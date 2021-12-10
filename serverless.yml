@@ -1,0 +1,27 @@
+org: nearbycoder
+app: dadjokes-slack-bot
+service: dadjokes-slack-bot
+
+plugins:
+  - serverless-bundle
+
+frameworkVersion: '2'
+variablesResolutionMode: 20210326
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+
+functions:
+  jokeHandler:
+    handler: joke.run
+    environment:
+      SLACK_BOT_TOKEN: ${param:SLACK_BOT_TOKEN}
+      SLACK_SIGNING_SECRET: ${param:SLACK_SIGNING_SECRET}
+    events:
+      # Invoke Lambda function every weekday at 10am
+      - schedule: cron(0 16 ? * MON-FRI *)
+
+custom:
+  bundle:
+    esbuild: true
