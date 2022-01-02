@@ -12,7 +12,7 @@ export const run = async (event, context) => {
 
     const joke = await response.json();
 
-    app.client.chat.postMessage({
+    await app.client.chat.postMessage({
       channel: 'dadjokes',
       text: joke.attachments[0].text,
     });
