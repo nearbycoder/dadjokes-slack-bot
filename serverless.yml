@@ -4,7 +4,6 @@ service: dadjokes-slack-bot
 
 plugins:
   - serverless-bundle
-
 frameworkVersion: '2'
 variablesResolutionMode: 20210326
 provider:
